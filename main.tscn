@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://i5bwsl1fyf0m"]
+[gd_scene load_steps=4 format=3 uid="uid://i5bwsl1fyf0m"]
 
 [ext_resource type="PackedScene" uid="uid://c7s0anhny6l7f" path="res://Player/player.tscn" id="1_f4uk2"]
+[ext_resource type="PackedScene" uid="uid://bnt5er82fl1r5" path="res://Harvestables/harvestable.tscn" id="2_i22qm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gfthp"]
 
@@ -23,3 +24,6 @@ jump_height = 120.0
 peak_time = 0.25
 fall_time = 0.2
 move_speed = 300.0
+
+[node name="Tree" parent="." instance=ExtResource("2_i22qm")]
+position = Vector2(868, 449)
