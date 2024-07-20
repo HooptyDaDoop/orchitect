@@ -7,6 +7,7 @@ class_name Harvester extends Hitbox
 
 @export var max_hit_sprite_scale_difference: float = 0.1
 
+
 signal on_harvest_done()
 
 

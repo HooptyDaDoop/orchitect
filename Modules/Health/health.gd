@@ -10,7 +10,7 @@ signal on_heal(amount: float, current: float)
 signal on_die()
 
 
-func _init() -> void:
+func _ready() -> void:
 	current_health = max_health
 
 

@@ -5,6 +5,7 @@ class_name Player extends CharacterBody2D
 @onready var harvester_tool: Harvester = $HarvesterTool
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var harvest_cooldown_timer: Timer = $Timers/HarvestCooldownTimer
 
 @export_group('Jumping')
 ## Height of the jump.[br]Defined in pixels.
@@ -28,6 +29,7 @@ var move_direction: float = 0
 @export_group('Harvesting')
 @export var is_harvesting: bool = false
 @export var harvest_damage: float = 1
+@export var harvest_wait_time: float = 1
 
 
 func _ready() -> void:
@@ -38,6 +40,7 @@ func _ready() -> void:
 	jump_buffer_timer.wait_time = buffer_time
 
 	harvester_tool.damage = harvest_damage
+	harvest_cooldown_timer.wait_time = harvest_wait_time
 
 
 func _process(_delta: float) -> void:
@@ -71,9 +74,10 @@ func _process(_delta: float) -> void:
 		elif mouse_pos.x > position.x:
 			harvester_tool.flip_right()
 
-	if not is_harvesting and Input.is_action_just_pressed('attack'):
+	if not is_harvesting and Input.is_action_just_pressed('attack') and harvest_cooldown_timer.is_stopped():
 		harvester_tool.harvest()
 		is_harvesting = true
+		harvest_cooldown_timer.start()
 
 	if Input.is_action_pressed('jump') and is_on_floor():
 		velocity.y = jump_force
