@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://i5bwsl1fyf0m"]
+
+[ext_resource type="PackedScene" uid="uid://c7s0anhny6l7f" path="res://Player/player.tscn" id="1_f4uk2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gfthp"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(576, 600)
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor"]
+scale = Vector2(24, 1)
+polygon = PackedVector2Array(-24, 0, 24, 0, 24, 48, -24, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_gfthp")
+
+[node name="Player" parent="." instance=ExtResource("1_f4uk2")]
+position = Vector2(558, 214)
+jump_height = 120.0
+peak_time = 0.25
+fall_time = 0.2
+move_speed = 300.0
